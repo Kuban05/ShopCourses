@@ -10,14 +10,14 @@ namespace ShopCourses.Models
     {
         public int CourseId { get; set; }
         public int CategoryId { get; set; }
-        //[Required(ErrorMessage = "Wprowadź tytuł kursu")]
-        //[StringLength(100)]
+        [Required(ErrorMessage = "Wprowadź tytuł kursu")]
+        [StringLength(100)]
         public string TitleCourse { get; set; }
-        //[Required(ErrorMessage = "Wprowadź nazwe autora")]
-        //[StringLength(100)]
+        [Required(ErrorMessage = "Wprowadź nazwe autora")]
+        [StringLength(100)]
         public string AuthorCourse { get; set; }
         public DateTime DateAdded { get; set; }
-        //[StringLength(100)]
+        [StringLength(100)]
         public string NamePicture { get; set; }
         public string DescriptionCourse { get; set; }
         public decimal PriceCourse { get; set; }

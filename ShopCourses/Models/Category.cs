@@ -6,10 +6,10 @@ namespace ShopCourses.Models
     public class Category
     {
         public int CategoryId { get; set; }
-        //[Required(ErrorMessage = "Wprowadź nazwe kategorii")]
-        //[StringLength(100)]
+        [Required(ErrorMessage = "Wprowadź nazwe kategorii")]
+        [StringLength(100)]
         public string NameCategory { get; set; }
-        //[Required(ErrorMessage = "Wprowadź opis kategorii")]
+        [Required(ErrorMessage = "Wprowadź opis kategorii")]
         public string DescriptionCategory { get; set; }
         public string NameFileIcon { get; set; }
 
