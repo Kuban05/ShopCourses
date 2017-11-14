@@ -16,9 +16,9 @@ namespace ShopCourses.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var category = db.Categories.OrderByDescending(o => o.NameCategory).ToList();
-            var news = db.Courses.Where(c => !c.Hidden).OrderBy(o => Guid.NewGuid()).Take(3).ToList();
-            var bestseller = db.Courses.Where(c => !c.Hidden && c.Bestseller).OrderBy(o => o.DateAdded).Take(3).ToList();
+            var category = db.Categories.ToList();
+            var news = db.Courses.Where(c => !c.Hidden).OrderByDescending(o => o.DateAdded).Take(3).ToList();
+            var bestseller = db.Courses.Where(c => !c.Hidden && c.Bestseller).OrderBy(o => Guid.NewGuid()).Take(3).ToList();
 
             var vm = new HomeViewModel()
             {

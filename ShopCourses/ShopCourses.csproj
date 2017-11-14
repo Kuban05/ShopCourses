@@ -53,8 +53,8 @@
     <Reference Include="Glimpse.AspNet, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
     </Reference>
-    <Reference Include="Glimpse.Core, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Glimpse.1.8.2\lib\net45\Glimpse.Core.dll</HintPath>
+    <Reference Include="Glimpse.Core, Version=1.8.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
     </Reference>
     <Reference Include="Glimpse.Mvc5, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
@@ -159,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\CourseContext.cs" />
@@ -167,6 +168,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastucture\AppConfig.cs" />
+    <Compile Include="Infrastucture\UrlHelpers.cs" />
     <Compile Include="Migrations\201711141057237_InitialCreate.cs" />
     <Compile Include="Migrations\201711141057237_InitialCreate.Designer.cs">
       <DependentUpon>201711141057237_InitialCreate.cs</DependentUpon>
@@ -174,6 +177,10 @@
     <Compile Include="Migrations\201711141236174_ChangeStructureDb.cs" />
     <Compile Include="Migrations\201711141236174_ChangeStructureDb.Designer.cs">
       <DependentUpon>201711141236174_ChangeStructureDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711141501080_ChangeCategories.cs" />
+    <Compile Include="Migrations\201711141501080_ChangeCategories.Designer.cs">
+      <DependentUpon>201711141501080_ChangeCategories.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
@@ -199,6 +206,8 @@
     <Content Include="Views\Home\Feedbacks.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
     <Content Include="Views\Home\TermsOfUse.cshtml" />
+    <Content Include="Views\Course\List.cshtml" />
+    <Content Include="Views\Basket\AddToBasket.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -208,7 +217,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Course\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711141057237_InitialCreate.resx">
@@ -216,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711141236174_ChangeStructureDb.resx">
       <DependentUpon>201711141236174_ChangeStructureDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711141501080_ChangeCategories.resx">
+      <DependentUpon>201711141501080_ChangeCategories.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

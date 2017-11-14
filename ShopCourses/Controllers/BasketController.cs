@@ -6,23 +6,17 @@ using System.Web.Mvc;
 
 namespace ShopCourses.Controllers
 {
-    public class CourseController : Controller
+    public class BasketController : Controller
     {
-        // GET: Course
+        // GET: Basket
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult List(string nameCategory)
+        public ActionResult AddToBasket(string id)
         {
             return View();
         }
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
     }
 }
