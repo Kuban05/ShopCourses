@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ShopCourses.DAL;
+using ShopCourses.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,13 @@ namespace ShopCourses.Controllers
 {
     public class HomeController : Controller
     {
+        private CourseContext db = new CourseContext();
+
         // GET: Home
         public ActionResult Index()
         {
+           
+
             return View();
         }
     }
