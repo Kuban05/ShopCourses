@@ -208,6 +208,8 @@
     <Content Include="Views\Home\TermsOfUse.cshtml" />
     <Content Include="Views\Course\List.cshtml" />
     <Content Include="Views\Basket\AddToBasket.cshtml" />
+    <Content Include="Views\Course\_MenuCategory.cshtml" />
+    <Content Include="Views\Course\_CoursesList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShopCourses.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace ShopCourses.Controllers
 {
     public class CourseController : Controller
     {
+        private CourseContext db = new CourseContext();
+
         // GET: Course
         public ActionResult Index()
         {
@@ -16,12 +19,23 @@ namespace ShopCourses.Controllers
 
         public ActionResult List(string nameCategory)
         {
-            return View();
+            var category = db.Categories.Include("Courses").Where(k => k.NameCategory.ToUpper() == nameCategory.ToUpper()).Single();
+            var courses = category.Courses.ToList();
+
+            return View(courses);
         }
 
         public ActionResult Details(int id)
         {
             return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult MenuCategory()
+        {
+            var categories = db.Categories.ToList();
+
+            return PartialView("_MenuCategory", categories);
         }
 
     }

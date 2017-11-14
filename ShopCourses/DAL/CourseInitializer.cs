@@ -24,7 +24,7 @@ namespace ShopCourses.DAL
             {
                 new Category(){CategoryId=1, NameCategory="Asp.Net",NameFileIcon="aspnet.png",DescriptionCategory="Programowanie web aplikacji."},
                 new Category(){CategoryId=2, NameCategory="JavaScript",NameFileIcon="javascript.png",DescriptionCategory="Skryptowy język."},
-                new Category(){CategoryId=3, NameCategory="jQuery",NameFileIcon="iquery.png",DescriptionCategory="Lekka biblioteka."},
+                new Category(){CategoryId=3, NameCategory="jQuery",NameFileIcon="jquery.png",DescriptionCategory="Lekka biblioteka."},
                 new Category(){CategoryId=4, NameCategory="Html5",NameFileIcon="html.png",DescriptionCategory="Język wykorzystywany do przedstawiania zawartości strony."},
                 new Category(){CategoryId=5, NameCategory="Css3",NameFileIcon="css.png",DescriptionCategory="Język służący do stylowania."},
                 new Category(){CategoryId=6, NameCategory="Xml",NameFileIcon="xml.png",DescriptionCategory="Uniwersalny język."},
