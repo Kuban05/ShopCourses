@@ -50,6 +50,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Glimpse.AspNet, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Core, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.1.8.2\lib\net45\Glimpse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Mvc5, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -114,22 +123,22 @@
     <Content Include="Content\Images\new.png" />
     <Content Include="Content\Images\searchlogo.png" />
     <Content Include="Content\Images\upload.png" />
-    <Content Include="Content\Kategorie\aspnet.png" />
-    <Content Include="Content\Kategorie\csharp.png" />
-    <Content Include="Content\Kategorie\css.png" />
-    <Content Include="Content\Kategorie\html.png" />
-    <Content Include="Content\Kategorie\javascript.png" />
-    <Content Include="Content\Kategorie\jquery.png" />
-    <Content Include="Content\Kategorie\xml.png" />
-    <Content Include="Content\Kursy\obrazekaspnet.png" />
-    <Content Include="Content\Kursy\obrazekcsharp.png" />
-    <Content Include="Content\Kursy\obrazekcss.png" />
-    <Content Include="Content\Kursy\obrazekhtml.png" />
-    <Content Include="Content\Kursy\obrazekjavascript.png" />
-    <Content Include="Content\Kursy\obrazekjquery.png" />
-    <Content Include="Content\Kursy\obrazekmvc.png" />
-    <Content Include="Content\Kursy\obrazekmvc2.png" />
-    <Content Include="Content\Kursy\obrazekxml.png" />
+    <Content Include="Content\Categories\aspnet.png" />
+    <Content Include="Content\Categories\csharp.png" />
+    <Content Include="Content\Categories\css.png" />
+    <Content Include="Content\Categories\html.png" />
+    <Content Include="Content\Categories\javascript.png" />
+    <Content Include="Content\Categories\jquery.png" />
+    <Content Include="Content\Categories\xml.png" />
+    <Content Include="Content\Courses\obrazekaspnet.png" />
+    <Content Include="Content\Courses\obrazekcsharp.png" />
+    <Content Include="Content\Courses\obrazekcss.png" />
+    <Content Include="Content\Courses\obrazekhtml.png" />
+    <Content Include="Content\Courses\obrazekjavascript.png" />
+    <Content Include="Content\Courses\obrazekjquery.png" />
+    <Content Include="Content\Courses\obrazekmvc.png" />
+    <Content Include="Content\Courses\obrazekmvc2.png" />
+    <Content Include="Content\Courses\obrazekxml.png" />
     <Content Include="Content\Prototype.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -150,9 +159,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\CourseContext.cs" />
     <Compile Include="DAL\CourseInitializer.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,6 +193,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Community.cshtml" />
+    <Content Include="Views\Home\Feedbacks.cshtml" />
+    <Content Include="Views\Home\Help.cshtml" />
+    <Content Include="Views\Home\TermsOfUse.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -191,6 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Course\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711141057237_InitialCreate.resx">
