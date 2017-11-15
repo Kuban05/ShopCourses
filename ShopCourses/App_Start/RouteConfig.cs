@@ -14,6 +14,11 @@ namespace ShopCourses
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "CourseDetails",
+                url: "Course-{id}.html",
+                defaults: new { controller = "Course", action = "Details" });
+
+            routes.MapRoute(
                 name: "CoursesList",
                 url: "Category/{nameCategory}",
                 defaults: new { controller = "Course", action = "List" });
