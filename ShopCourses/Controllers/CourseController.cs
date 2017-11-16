@@ -17,10 +17,17 @@ namespace ShopCourses.Controllers
             return View();
         }
 
-        public ActionResult List(string nameCategory)
+        public ActionResult List(string nameCategory, string searchQuery = null)
         {
             var category = db.Categories.Include("Courses").Where(k => k.NameCategory.ToUpper() == nameCategory.ToUpper()).Single();
-            var courses = category.Courses.ToList();
+            var courses = category.Courses.Where(c => (searchQuery == null ||
+            c.AuthorCourse.ToLower().Contains(searchQuery.ToLower()) ||
+            c.TitleCourse.ToLower().Contains(searchQuery.ToLower())) && !c.Hidden);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_CoursesList", courses);
+            }
 
             return View(courses);
         }
@@ -39,6 +46,16 @@ namespace ShopCourses.Controllers
             var categories = db.Categories.ToList();
 
             return PartialView("_MenuCategory", categories);
+        }
+
+        public ActionResult CoursesTips(string term)
+        {
+            var courses = db.Courses
+                .Where(c => !c.Hidden && c.TitleCourse.ToLower().Contains(term.ToLower()))
+                .Take(5)
+                .Select(s => new { label = s.TitleCourse });
+
+            return Json(courses, JsonRequestBehavior.AllowGet);
         }
 
     }
