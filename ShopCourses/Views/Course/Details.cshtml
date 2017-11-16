@@ -1,5 +1,5 @@
 ﻿@model ShopCourses.Models.Course
-@using ShopCourses.Infrastucture
+@using ShopCourses.Infrastructure
 
 @{
     ViewBag.Title = "Details";
@@ -12,7 +12,7 @@
         <div id="Breadcrumb">
             <img src="../Content/Images/dommaly.png" />
             <a href="link">
-                Start > ASP.NET
+                @Html.MvcSiteMap().SiteMapPath()
             </a>
         </div>
         <section id="SekcjaKurs">

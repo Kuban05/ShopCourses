@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ShopCourses.Infrastucture
+namespace ShopCourses.Infrastructure
 {
     public static class UrlHelpers
     {

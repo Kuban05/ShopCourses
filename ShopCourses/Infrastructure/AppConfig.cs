@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 
-namespace ShopCourses.Infrastucture
+namespace ShopCourses.Infrastructure
 {
     public class AppConfig
     {
