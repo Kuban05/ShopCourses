@@ -1,25 +1,27 @@
 ﻿@model IEnumerable<ShopCourses.Models.Course>
     @using ShopCourses.Infrastructure
 
-<ul class="KursyTrzyKolumny KursCena">
-    @foreach (var course in Model)
-    {
-    <li>
-        <article>
-            <a class="dodajDoKoszykaLink" href="@Url.Action("AddToBasket","Basket",new { id=course.CourseId})">
-                <img src="../Content/Images/koszyk.png" />
-            </a>
-            @if (course.Bestseller)
-            {
-            <div class="bestsellerFlag"></div>
-            }
-            <a class="kursSzczegolyLink" href="@Url.Action("Details","Course", new { id = course.CourseId})">
-                <img class="kurs" src="@Url.PathToImages(course.NamePicture)" />
-                <h1>
-                     @course.AuthorCourse - @course.TitleCourse
-                </h1>
-            </a>
-        </article>
-    </li>
-    }
-</ul>
+<div id="SekcjaListaKategori">
+    <ul class="KursyTrzyKolumny MalaListaKategorii">
+        @foreach (var course in Model)
+        {
+            <li>
+                <article>
+                    <a class="dodajDoKoszykaLink" href="@Url.Action("AddToBasket","Basket",new { id=course.CourseId})">
+                        <img src="../Content/Images/koszyk.png" />
+                    </a>
+                    @if (course.Bestseller)
+                    {
+                        <div class="bestsellerFlag"></div>
+                    }
+                    <a class="kursSzczegolyLink" href="@Url.Action("Details","Course", new { id = course.CourseId})">
+                        <img class="kurs" src="@Url.PathToImages(course.NamePicture)" />
+                        <h1>
+                            @course.AuthorCourse - @course.TitleCourse
+                        </h1>
+                    </a>
+                </article>
+            </li>
+        }
+    </ul>
+</div>

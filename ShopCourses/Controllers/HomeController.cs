@@ -1,4 +1,5 @@
 ﻿using ShopCourses.DAL;
+using ShopCourses.Infrastructure;
 using ShopCourses.Models;
 using ShopCourses.ViewModels;
 using System;
@@ -16,9 +17,42 @@ namespace ShopCourses.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var category = db.Categories.ToList();
-            var news = db.Courses.Where(c => !c.Hidden).OrderByDescending(o => o.DateAdded).Take(3).ToList();
-            var bestseller = db.Courses.Where(c => !c.Hidden && c.Bestseller).OrderBy(o => Guid.NewGuid()).Take(3).ToList();
+            
+
+            ICacheProvider cache = new DefaultCacheProvider();
+
+            List<Category> category;
+            if (cache.IsSet(Consts.CategoryCacheKey))
+            {
+                category = cache.Get(Consts.CategoryCacheKey) as List<Category>;
+            }
+            else
+            {
+                category = db.Categories.ToList();
+                cache.Set(Consts.CategoryCacheKey, category, 60);
+            }
+
+            List<Course> news;
+            if (cache.IsSet(Consts.NewsCacheKey))
+            {
+                news = cache.Get(Consts.NewsCacheKey) as List<Course>;
+            }
+            else
+            {
+                news = db.Courses.Where(c => !c.Hidden).OrderByDescending(o => o.DateAdded).Take(3).ToList();
+                cache.Set(Consts.NewsCacheKey, news, 1);
+            }
+
+            List<Course> bestseller;
+            if (cache.IsSet(Consts.BestsellerCacheKey))
+            {
+                bestseller = cache.Get(Consts.BestsellerCacheKey) as List<Course>;
+            }
+            else
+            {
+                bestseller = db.Courses.Where(c => !c.Hidden && c.Bestseller).OrderBy(o => Guid.NewGuid()).Take(3).ToList();
+                cache.Set(Consts.BestsellerCacheKey, bestseller, 1);
+            }
 
             var vm = new HomeViewModel()
             {
