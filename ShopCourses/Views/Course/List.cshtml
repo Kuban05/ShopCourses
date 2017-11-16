@@ -7,7 +7,7 @@
 
 
 <div id="ListaKategoriZawartosc">
-    @Html.Action("MenuCategory")    
+    @Html.Action("MenuCategory")
 
     <div id="KategorieListPrawaSekcja">
         <div id="Breadcrumb">
@@ -18,8 +18,13 @@
         </div>
 
         <div id="SekcjaListaKategori">
-           @Html.Partial("_CoursesList")
+            @Html.Partial("_CoursesList")
         </div>
 
     </div>
 </div>
+
+@section Scripts
+{
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryAndJqueryUI")
+}
