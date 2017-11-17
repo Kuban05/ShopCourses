@@ -10,5 +10,7 @@ namespace ShopCourses.Infrastructure
         public const string NewsCacheKey = "NewsCacheKey";
         public const string BestsellerCacheKey = "BestsellerCacheKey";
         public const string CategoryCacheKey = "CategoryCacheKey";
+
+        public const string BasketSessionKey = "BasketSessionKey";
     }
 }
