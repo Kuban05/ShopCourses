@@ -1,0 +1,92 @@
+﻿@model ShopCourses.ViewModels.BasketViewModel
+@using ShopCourses.Infrastructure
+
+@{
+    ViewBag.Title = "Koszyk";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="ListaKategoriZawartosc">
+    @Html.Action("MenuCategory", "Course")
+
+    <div id="KategorieListPrawaSekcja">
+        <div id="Breadcrumb">
+            <img src="../Content/Images/dommaly.png" />
+            <a href="link">
+                @Html.MvcSiteMap().SiteMapPath()
+            </a>
+        </div>
+        <section class="SekcjaKoszyk">
+            <div class="SekcjaHeader" style="margin-bottom: 0px;">
+                <h1>Twój koszyk</h1>
+            </div>
+            <table id="koszykTabela">
+                @foreach (var course in Model.BasketItem)
+                {
+                    <tr id="koszyk-wiersz-@course.Course.CourseId">
+                        <td><a href="@Url.Action("Details","Course",new { id =course.Course.CourseId})"><img src="@Url.PathToImages(course.Course.NamePicture)" /></a></td>
+                        <td><a href="@Url.Action("Details","Course",new { id =course.Course.CourseId})">@course.Course.TitleCourse</a></td>
+                        <td>Ilość: <span id="koszyk-ilosc-pozycja-@course.Course.CourseId">@course.Quantity</span></td>
+                        <td>@String.Format("{0:0.##}", course.Value) zł</td>
+                        <td><a class="usunKurs" data-id="@course.Course.CourseId" href="#">Usuń</a></td>
+                    </tr>
+                }
+
+                <tr id="koszyk-empty-message" @if (Model.BasketItem != null && Model.BasketItem.Count > 0) { <text> class="hidden" </text> }>
+                    <td>
+                        Twój koszyt jest pusty. Może chcesz coś dodać do koszyka?
+                    </td>
+                </tr>
+
+            </table>
+            <div id="CenaCalkowita" style="">
+                Razem: <span id="calkowita-cena-wartosc">@String.Format("{0:0.##}", Model.TotalPrice)</span> zł
+            </div>
+            <div class="SekcjaPrzyciski">
+                <a class="PrzyciskLink" href="@Url.Content("~/")">Kontynuuj zakupy</a>
+                @if (Model.TotalPrice > 0)
+                {
+                    <a class="PrzyciskLink" id="koszyk-button-zaplac" href="@Url.Action("Pay","Basket")">Zapłać</a>
+                }
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts{
+
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryAndJqueryUI")
+
+    <script type="text/javascript">
+        $(function () {
+            $(".usunKurs").click(function () {
+
+                var recordToRemove = $(this).attr("data-id");
+
+                if (recordToRemove != '') {
+                    $.post("/Basket/RemoveFromBasket", { "courseId": recordToRemove },
+                        function (response) {
+                            if (response.QuantityItemsToRemove == 0) {
+                                $('#koszyk-wiersz-' + response.IdItemsToRemove).fadeOut("slow", function () {
+                                    if (response.BasketQuantityItems == 0) {
+                                        $("#koszyk-empty-message").removeClass("hidden");
+                                    }
+                                });
+                            }
+                            else {
+                                $('#koszyk-ilosc-pozycja-' + response.IdItemsToRemove).text(response.QuantityItemsToRemove);
+                            }
+                            if (response.BasketQuantityItems == 0) {
+                                $('#koszyk-button-zaplac').addClass('hidden');
+                                $('#CenaCalkowita').addClass('invisible');
+                            }
+                            $('#calkowita-cena-wartosc').text(response.BasketTotalPrice);
+                            $('#koszyk-naglowek-ilosc-elementow').text(response.BasketQuantityItems);
+                        });
+                    return false;
+                }
+            });
+        });
+    </script>
+
+}

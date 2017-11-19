@@ -62,6 +62,27 @@ namespace ShopCourses.Infrastructure
             session.Set(Consts.BasketSessionKey, basket);
         }
 
+        public int RemoveFromBasket(int courseId)
+        {
+            var basket = GetBasket();
+            var basketItem = basket.Find(b => b.Course.CourseId == courseId);
+
+            if (basketItem != null) 
+            {
+                if (basketItem.Quantity > 1)
+                {
+                    basketItem.Quantity--;
+                    return basketItem.Quantity;
+                }
+                else
+                {
+                    basket.Remove(basketItem);
+                }
+            }
+
+            return 0;
+        }
+
         public decimal GetValueBasket()
         {
             var basket = GetBasket();
