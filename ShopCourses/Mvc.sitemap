@@ -4,12 +4,22 @@
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
   <mvcSiteMapNode title="Home" controller="Home" action="Index">
+    
     <mvcSiteMapNode title="Kategoria" controller="Course" action="List" dynamicNodeProvider="ShopCourses.Infrastructure.CategoriesDynamicNodeProvider, ShopCourses">
     <mvcSiteMapNode title="Kurs" controller="Course" action="Details" dynamicNodeProvider="ShopCourses.Infrastructure.CoursesDynamicNodeProvider, ShopCourses"/>
     </mvcSiteMapNode>
+    
     <mvcSiteMapNode title="Koszyk" controller="Basket" action="Index">
       <mvcSiteMapNode title="Dane zamówienia" controller="Basket" action="Pay"/>
       <mvcSiteMapNode title="Potwierdzenie zamówienia" controller="Basket" action="ConfirmOrder"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Konto" controller="Manage" action="Index">
+      <mvcSiteMapNode title="Rejestracja" controller="Account" action="Register"/>
+      <mvcSiteMapNode title="Logowanie" controller="Account" action="Login"/>
+      <mvcSiteMapNode title="Edycja produktu" controller="Manage" action="AddProduct"/>
+      <mvcSiteMapNode title="Twoje dane" controller="Manage" action="Index"/>
+      <mvcSiteMapNode title="Zamówienia" controller="Manage" action="OrdersList"/>
     </mvcSiteMapNode>
   </mvcSiteMapNode>
 

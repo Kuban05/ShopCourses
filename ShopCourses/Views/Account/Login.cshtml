@@ -1,0 +1,63 @@
+﻿@model ShopCourses.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_RightSectionLayout.cshtml";
+}
+
+@section SectionTitle{
+    Zaloguj się
+    }
+
+<div>
+    @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="login-error">
+            @Html.ValidationMessage("loginerror","")
+        </div>
+
+        <table id="login-table" style="margin-left:auto; margin-right:auto;">
+            <tr>
+                <td>@Html.LabelFor(l => l.Email, "E-mail:")</td>
+                <td>
+                    @Html.TextBoxFor(t => t.Email)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(v => v.Email)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(l => l.Password, "Hasło:")</td>
+                <td>
+                    @Html.PasswordFor(t => t.Password)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(v => v.Password)
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="checkbox" style="margin-bottom: 10px;">
+                        @Html.CheckBoxFor(c => c.RememberMe, new { @checked ="checked"})
+                        @Html.LabelFor(l => l.RememberMe)
+                    </div>
+
+                    <input type="submit" value="Zaloguj" class="submitLink" style="height: 40px;"/>
+                </td>
+            </tr>
+        </table>
+    }
+
+    <div style="text-align: center;">
+        <a href="@Url.Action("Register")">Nie mam jeszcze konta</a>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/jquery-3.2.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    }
