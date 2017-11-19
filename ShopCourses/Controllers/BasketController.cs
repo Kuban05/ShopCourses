@@ -13,14 +13,14 @@ namespace ShopCourses.Controllers
     public class BasketController : Controller
     {
         private BasketManager basketManager;
-        private ISessionManager sessionManager { get; set; }
+        private ISessionManager SessionManager { get; set; }
         private CourseContext db;
 
         public BasketController()
         {
             db = new CourseContext();
-            sessionManager = new SessionManager();
-            basketManager = new BasketManager(sessionManager, db);
+            SessionManager = new SessionManager();
+            basketManager = new BasketManager(SessionManager, db);
         }
 
         // GET: Basket

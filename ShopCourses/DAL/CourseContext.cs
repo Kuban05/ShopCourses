@@ -1,4 +1,5 @@
-﻿using ShopCourses.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using ShopCourses.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,7 +10,7 @@ using System.Web;
 
 namespace ShopCourses.DAL
 {
-    public class CourseContext : DbContext
+    public class CourseContext : IdentityDbContext<ApplicationUser>
     {
         public CourseContext() : base("CourseContext")
         {
@@ -18,6 +19,11 @@ namespace ShopCourses.DAL
         static CourseContext()
         {
             Database.SetInitializer<CourseContext>(new CourseInitializer());
+        }
+
+        public static CourseContext Create()
+        {
+            return new CourseContext();
         }
 
         public DbSet<Course> Courses { get; set; }
