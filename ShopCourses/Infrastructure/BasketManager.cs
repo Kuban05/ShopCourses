@@ -100,7 +100,7 @@ namespace ShopCourses.Infrastructure
         {
             var basket = GetBasket();
             newOrder.DateAdded = DateTime.Now;
-            //newOrder.userId = userId;
+            newOrder.UserId = userId;
 
             db.Orders.Add(newOrder);
 

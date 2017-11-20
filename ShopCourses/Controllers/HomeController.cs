@@ -5,7 +5,6 @@ using ShopCourses.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ShopCourses.Controllers
@@ -17,8 +16,6 @@ namespace ShopCourses.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            
-
             ICacheProvider cache = new DefaultCacheProvider();
 
             List<Category> category;

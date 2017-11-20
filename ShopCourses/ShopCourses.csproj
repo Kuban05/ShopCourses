@@ -301,6 +301,10 @@
     <Compile Include="Migrations\201711191542167_AddAspIdentity.Designer.cs">
       <DependentUpon>201711191542167_AddAspIdentity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711201047090_UpdateModelDataUserAndOrder.cs" />
+    <Compile Include="Migrations\201711201047090_UpdateModelDataUserAndOrder.Designer.cs">
+      <DependentUpon>201711201047090_UpdateModelDataUserAndOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasketItem.cs" />
     <Compile Include="Models\Category.cs" />
@@ -351,6 +355,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Basket\Pay.cshtml" />
+    <Content Include="Views\Basket\ConfirmOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -373,6 +379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711191542167_AddAspIdentity.resx">
       <DependentUpon>201711191542167_AddAspIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711201047090_UpdateModelDataUserAndOrder.resx">
+      <DependentUpon>201711201047090_UpdateModelDataUserAndOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
