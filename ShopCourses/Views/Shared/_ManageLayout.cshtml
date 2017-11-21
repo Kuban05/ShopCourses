@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.css")" rel="stylesheet"/>
+</head>
+<body>
+    @RenderSection("Scripts", required: false)
+    <header>
+
+    <div style="overflow:hidden; margin-bottom: 30px;"> 
+        <a class="manageLink" href="@Url.Action("Index","Home")">
+            Start
+        </a>
+        <a class="manageLink" href="@Url.Action("Index","Manage")">
+            Twoje dane
+        </a>
+        <a id="koszykHeaderLink" href="@Url.Action("Index","Basket")">
+            KOSZYK (<span id="koszyk-naglowek-ilosc-elementow">@Html.Action("GetQuantityElementsBasket", "Basket")</span>)
+            <span id="cart-header-logo"></span>
+        </a>
+        @Html.Partial("_LoginPartial")
+    </div>
+        <div id="Breadcrumb">
+            <img src="@Url.Content("~/Content/Images/dommaly.png")"/>
+            @Html.MvcSiteMap().SiteMapPath()
+        </div>
+    </header>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="@Url.Action("SitesStatic", "Home", new { name = "AboutUs" })">O nas</a></li>
+                <li><a href="@Url.Action("SitesStatic", "Home", new { name = "Community" })">Społeczność</a></li>
+                <li><a href="@Url.Action("SitesStatic", "Home", new { name = "Feedbacks" })">Opinie</a></li>
+                <li><a href="@Url.Action("SitesStatic", "Home", new { name = "Help" })">Pomoc</a></li>
+                <li><a href="@Url.Action("SitesStatic", "Home", new { name = "TermsOfUse" })">Regulamin</a></li>
+                <li><a href="@Url.Action("SitesStatic", "Home", new { name = "Contact" })">Kontakt</a></li>
+            </ul>
+        </nav>
+
+        <div id="footerLogo">
+        </div>
+        <div id="footerCopyright">
+            Copyright &copy; @DateTime.Now.Year
+        </div>
+    </footer>
+
+</body>
+</html>
