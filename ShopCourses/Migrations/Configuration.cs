@@ -17,6 +17,7 @@ namespace ShopCourses.Migrations
         protected override void Seed(ShopCourses.DAL.CourseContext context)
         {
             CourseInitializer.SeedCoursesData(context);
+            CourseInitializer.SeedUsers(context);
 
             //  This method will be called after migrating to the latest version.
 

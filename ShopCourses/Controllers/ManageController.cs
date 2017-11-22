@@ -7,6 +7,7 @@ using ShopCourses.Models;
 using ShopCourses.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -18,8 +19,14 @@ namespace ShopCourses.Controllers
     public class ManageController : Controller
     {
         //private static Logger logger = LogManager.GetCurrentClassLogger();
-        private CourseContext db;
-       // private IMailService mailService;
+        private CourseContext db = new CourseContext();
+        //private IMailService mailService;
+
+        //public ManageController(CourseContext context), IMailService mailService)
+        //{
+        //    this.db = context;
+        //    //this.mailService = mailService;
+        //}
 
         public enum ManageMessageId
         {
@@ -27,18 +34,12 @@ namespace ShopCourses.Controllers
             Error
         }
 
-        //public ManageController(KursyContext context, IMailService mailService)
-        //{
-        //    this.db = context;
-        //    this.mailService = mailService;
-        //}
-
-        //public ManageController(ApplicationUserManager userManager)
-        //{
-        //    UserManager = userManager;
-        //}
-
         private ApplicationUserManager _userManager;
+
+        public ManageController()
+        {
+        }
+
         public ApplicationUserManager UserManager
         {
             get
@@ -50,6 +51,11 @@ namespace ShopCourses.Controllers
                 _userManager = value;
             }
         }
+
+        //public ManageController(ApplicationUserManager userManager)
+        //{
+        //    UserManager = userManager;
+        //}
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -159,45 +165,45 @@ namespace ShopCourses.Controllers
             AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
         }
 
-        //public ActionResult ListaZamowien()
-        //{
-        //    var name = User.Identity.Name;
-        //    //logger.Info("Admin zamowienia | " + name);
+        public ActionResult OrderList()
+        {
+            //var name = User.Identity.Name;
+            //logger.Info("Admin zamowienia | " + name);
 
-        //    bool isAdmin = User.IsInRole("Admin");
-        //    ViewBag.UserIsAdmin = isAdmin;
+            bool isAdmin = User.IsInRole("Admin");
+            ViewBag.UserIsAdmin = isAdmin;
 
-        //    IEnumerable<Order> zamowieniaUzytkownika;
+            IEnumerable<Order> zamowieniaUzytkownika;
 
-        //    // Dla administratora zwracamy wszystkie zamowienia
-        //    if (isAdmin)
-        //    {
-        //        zamowieniaUzytkownika = db.Zamowienia.Include("PozycjeZamowienia").OrderByDescending(o => o.DataDodania).ToArray();
-        //    }
-        //    else
-        //    {
-        //        var userId = User.Identity.GetUserId();
-        //        zamowieniaUzytkownika = db.Zamowienia.Where(o => o.UserId == userId).Include("PozycjeZamowienia").OrderByDescending(o => o.DataDodania).ToArray();
-        //    }
+            // Dla administratora zwracamy wszystkie zamowienia
+            if (isAdmin)
+            {
+                zamowieniaUzytkownika = db.Orders.Include("OrderItem").OrderByDescending(o => o.DateAdded).ToArray();
+            }
+            else
+            {
+                var userId = User.Identity.GetUserId();
+                zamowieniaUzytkownika = db.Orders.Where(o => o.UserId == userId).Include("OrderItem").OrderByDescending(o => o.DateAdded).ToArray();
+            }
 
-        //    return View(zamowieniaUzytkownika);
-        //}
+            return View(zamowieniaUzytkownika);
+        }
 
-        //[HttpPost]
-        //[Authorize(Roles = "Admin")]
-        //public OrderItem ZmianaStanuZamowienia(Order zamowienie)
-        //{
-        //    Order zamowienieDoModyfikacji = db.Zamowienia.Find(zamowienie.OrderId);
-        //    zamowienieDoModyfikacji.OrderStatus = zamowienie.OrderStatus;
-        //    db.SaveChanges();
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public OrderStatus ChangeStatusOrder(Order order)
+        {
+            Order OrderToModify = db.Orders.Find(order.OrderId);
+            OrderToModify.OrderStatus = order.OrderStatus;
+            db.SaveChanges();
 
-        //    if (zamowienieDoModyfikacji.StanZamowienia == StanZamowienia.Zrealizowane)
-        //    {
-        //        this.mailService.WyslanieZamowienieZrealizowaneEmail(zamowienieDoModyfikacji);
-        //    }
+            //if (OrderToModify.OrderStatus == OrderStatus.Completed)
+            //{
+            //    this.mailService.WyslanieZamowienieZrealizowaneEmail(zamowienieDoModyfikacji);
+            //}
 
-        //    return zamowienie.StanZamowienia;
-        //}
+            return order.OrderStatus;
+        }
 
         //[Authorize(Roles = "Admin")]
         //public ActionResult DodajKurs(int? kursId, bool? potwierdzenie)
