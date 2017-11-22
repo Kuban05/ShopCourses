@@ -1,0 +1,106 @@
+﻿@model ShopCourses.ViewModels.EditCourseViewModel
+
+@{
+    ViewBag.Title = "AddCourse";
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+}
+
+<hr />
+<h2 class="manageHeader">Edycja produktu</h2>
+
+<div>
+
+    @if (Model.Confirm.HasValue && Model.Confirm.Value)
+    {
+        <div style="text-align: center; margin: 50px;">
+            Pomyślnie wprowadzono zmiany!
+        </div>
+    }
+
+    @using (Html.BeginForm("AddCourse", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="error-summary-centered">
+            @Html.ValidationSummary()
+        </div>
+
+        @Html.HiddenFor(h => h.Course.CourseId)
+        @Html.HiddenFor(h => h.Course.DateAdded)
+        @Html.HiddenFor(h => h.Course.NamePicture)
+
+        <div style="text-align:center;">
+            <table id="albumedit-address-table">
+                <tr>
+                    <td>@Html.LabelFor(l => l.Course.AuthorCourse, "Autor:")</td>
+                    <td>@Html.TextBoxFor(t => t.Course.AuthorCourse)</td>
+                    <td>@Html.ValidationMessageFor(v => v.Course.AuthorCourse)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(l => l.Course.TitleCourse, "Kurs:")</td>
+                    <td>@Html.TextBoxFor(t => t.Course.TitleCourse)</td>
+                    <td>@Html.ValidationMessageFor(v => v.Course.TitleCourse)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(l => l.Course.DescriptionCourse, "Opis:")</td>
+                    <td>@Html.TextBoxFor(t => t.Course.DescriptionCourse)</td>
+                    <td>@Html.ValidationMessageFor(v => v.Course.DescriptionCourse)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(l => l.Course.ShortenedDescription, "Opis skrócony:")</td>
+                    <td>@Html.TextBoxFor(t => t.Course.ShortenedDescription)</td>
+                    <td>@Html.ValidationMessageFor(v => v.Course.ShortenedDescription)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(l => l.Category, "Kategoria:")</td>
+                    <td>@Html.DropDownListFor(d => d.Course.CategoryId, new SelectList(Model.Category, "CategoryId", "NameCategory", Model.Category.First().CategoryId))</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(l => l.Course.PriceCourse, "Cena:")</td>
+                    <td>@Html.TextBoxFor(t => t.Course.PriceCourse)</td>
+                    <td>@Html.ValidationMessageFor(v => v.Course.PriceCourse)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(l => l.Course.Bestseller, "Bestseller:")</td>
+                    <td>@Html.CheckBoxFor(t => t.Course.Bestseller)</td>
+                    <td></td>
+                </tr>
+                @if (ViewBag.EditMode == null || !ViewBag.EditMode)
+                {
+                    <tr>
+                        <td colspan="3">
+                            <div class="upload">
+                                <input type="file" name="file">
+                            </div>
+                        </td>
+                    </tr>
+                }
+                <tr>
+
+                    <td style="text-align: left;">
+                       @if (ViewBag.EditMode)
+                       {
+                           if (Model.Course.Hidden)
+                           {
+                               <a href="@Url.Action("ShowCourse","Manage", new { courseId = Model.Course.CourseId})" style="display: block; margin-top: 15px; font-weight: bold;">
+                                   Przywróć
+                               </a>
+                           }
+                           else
+                           {
+                            <a href="@Url.Action("HideCourse","Manage", new { courseId = Model.Course.CourseId})" style="display: block; margin-top: 15px; font-weight: bold;">
+                                Usuń
+                            </a>
+                           }
+                       }
+                    </td>
+
+                    <td style="text-align:right;">
+                        <input type="submit" value="Zapisz" class="submitLink" style="height: 40px; margin-right: 0px; margin-top: 30px; font-weight: bold;" />
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    }
+</div>
