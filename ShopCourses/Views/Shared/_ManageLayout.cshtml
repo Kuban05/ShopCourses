@@ -26,6 +26,9 @@
             <a class="manageLink" href="@Url.Action("AddCourse","Manage")">
                 Dodaj
             </a>
+            <a class="manageLink" href="@Url.Content("~/elmah")">
+                Logi
+            </a>
         }
         <a id="koszykHeaderLink" href="@Url.Action("Index","Basket")">
             KOSZYK (<span id="koszyk-naglowek-ilosc-elementow">@Html.Action("GetQuantityElementsBasket", "Basket")</span>)

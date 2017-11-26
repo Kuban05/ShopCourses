@@ -6,7 +6,7 @@ namespace ShopCourses.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    public sealed class Configuration : DbMigrationsConfiguration<ShopCourses.DAL.CourseContext>
+    public sealed class Configuration : DbMigrationsConfiguration<CourseContext>
     {
         public Configuration()
         {
@@ -14,7 +14,7 @@ namespace ShopCourses.Migrations
             ContextKey = "ShopCourses.DAL.CourseContext";
         }
 
-        protected override void Seed(ShopCourses.DAL.CourseContext context)
+        protected override void Seed(CourseContext context)
         {
             CourseInitializer.SeedCoursesData(context);
             CourseInitializer.SeedUsers(context);

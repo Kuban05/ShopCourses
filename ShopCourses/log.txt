@@ -1,0 +1,16 @@
+2017-11-26 10:51:09.9863|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 10:54:02.4440|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 10:54:20.9494|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 10:54:21.9276|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 10:54:27.5315|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 10:54:35.3847|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 10:59:32.0684|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 10:59:45.8334|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 11:07:02.6211|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 11:09:22.7539|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 11:09:23.5866|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 11:09:24.2687|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 11:09:24.8386|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 11:09:26.1363|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 11:09:26.7317|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej
+2017-11-26 11:09:28.9087|INFO|ShopCourses.Controllers.HomeController|Jesteœ na stronie g³ównej

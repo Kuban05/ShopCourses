@@ -1,4 +1,5 @@
-﻿using ShopCourses.DAL;
+﻿using NLog;
+using ShopCourses.DAL;
 using ShopCourses.Infrastructure;
 using ShopCourses.Models;
 using ShopCourses.ViewModels;
@@ -12,10 +13,13 @@ namespace ShopCourses.Controllers
     public class HomeController : Controller
     {
         private CourseContext db = new CourseContext();
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         // GET: Home
         public ActionResult Index()
         {
+            logger.Info("Jesteś na stronie głównej");
+
             ICacheProvider cache = new DefaultCacheProvider();
 
             List<Category> category;
